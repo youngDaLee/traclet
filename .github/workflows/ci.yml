@@ -32,11 +32,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Build & Publish to local Maven
-        run: ./gradlew :traclet-core:publishToMavenLocal
+      - name: Get version from build.gradle.kts
+        id: get_version
+        run: |
+          VERSION=$(grep "version = " build.gradle.kts | sed -E 's/.*"(.+)"$/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Git tag
+        run: |
+          git tag v${{ steps.get_version.outputs.version }}
+          git push origin v${{ steps.get_version.outputs.version }}
