@@ -5,4 +5,8 @@ package traclet.core.alert
  */
 interface Alerter {
     fun report(eventKey : String)
+
+    companion object {
+        val default = ConsoleAlerter()
+    }
 }

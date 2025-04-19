@@ -5,7 +5,7 @@ import traclet.core.collector.model.RetentionPolicy
 import java.util.concurrent.ConcurrentHashMap
 
 class InMemoryStore (
-    override val retentionPolicy : RetentionPolicy = RetentionPolicy.ofMinutes(1) // 기본 보존 정책은 1분
+    override val retentionPolicy : RetentionPolicy
 ) : Store {
     private val events: MutableMap<String, MutableList<EventMetric>> = ConcurrentHashMap()
 

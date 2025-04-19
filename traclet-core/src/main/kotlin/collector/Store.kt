@@ -37,4 +37,10 @@ interface Store {
     fun getEvents(): Map<String, List<EventMetric>> {
         return emptyMap()
     }
+
+    companion object {
+        fun default(retentionPolicy: RetentionPolicy = RetentionPolicy.ofMinutes(1) ): Store {
+            return InMemoryStore(retentionPolicy)
+        }
+    }
 }
