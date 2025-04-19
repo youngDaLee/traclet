@@ -17,6 +17,13 @@ todo
 - 이벤트 호출 속도 분석
 
 ## 사용 방법
+### Gradle 의존성 추가
+```groovy
+dependencies {
+    implementation("com.github.youngDaLee:traclet:v0.0.1")
+}
+```
+
 ### 기본 사용 방법
 ```kotlin
 import traclet.core.Traclet
@@ -35,7 +42,23 @@ fun main() {
 ### 이벤트 수집 및 알림
 ```kotlin
 import traclet.core.Traclet
+import traclet.core.collector.model.EventMetric
+import traclet.core.trigger.model.TriggerRule
 
+fun main() {
+    // 1. 트리거 조건 설정
+    val rule = TriggerRule(
+        trigger = ThresholdTrigger(threshold = 3),
+        alerter = ConsoleAlerter()
+    )
+    // 2. Traclet 초기화
+    Traclet.init(
+        triggerRules = listOf(rule)
+    )
+
+    // 이벤트 수집
+    Traclet.record("test.key")
+}
 ```
 
 ## License
