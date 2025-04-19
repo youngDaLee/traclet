@@ -17,7 +17,26 @@ todo
 - 이벤트 호출 속도 분석
 
 ## 사용 방법
+### 기본 사용 방법
+```kotlin
+import traclet.core.Traclet
 
+fun main() {
+    // 초기화 (store와 트리거 규칙은 기본값 사용)
+    Traclet.init()
+
+    // 이벤트 수집 (실시간 저장)
+    Traclet.record("user.login")
+}
+```
+- jvm 힙메모리 영역에 이벤트를 저장 (1분 동안 저장)
+- 알림 규칙을 지정하기 않았기 때문에 저장만 진행
+
+### 이벤트 수집 및 알림
+```kotlin
+import traclet.core.Traclet
+
+```
 
 ## License
 This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.
