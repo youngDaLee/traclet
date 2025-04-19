@@ -1,11 +1,14 @@
 package traclet.core.collector
 
 import traclet.core.collector.model.EventMetric
+import traclet.core.collector.model.RetentionPolicy
 
 /**
  * 수집되는 데이터를 저장하는 인터페이스
  */
 interface Store {
+    val retentionPolicy: RetentionPolicy
+
     /**
      * 수집되는 이벤트를 저장하는 메서드
      *
