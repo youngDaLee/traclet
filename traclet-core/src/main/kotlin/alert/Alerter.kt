@@ -7,6 +7,8 @@ interface Alerter {
     fun report(eventKey : String)
 
     companion object {
-        val default = ConsoleAlerter()
+        fun default() : Alerter {
+            return ConsoleAlerter()
+        }
     }
 }
