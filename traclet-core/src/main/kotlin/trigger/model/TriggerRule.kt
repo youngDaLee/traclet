@@ -5,5 +5,5 @@ import traclet.core.trigger.Trigger
 
 data class TriggerRule (
     val trigger: Trigger,
-    val alerter: Alerter = Alerter.default,
+    val alerter: Alerter = Alerter.default(),
 )
